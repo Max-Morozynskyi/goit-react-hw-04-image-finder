@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { useState } from 'react';
 import { ImSearch } from 'react-icons/im';
 import {
   Serchbar,
@@ -8,43 +8,37 @@ import {
   SearchFormInput,
 } from './Searchbar.styled';
 
-export class Searchbar extends Component {
-  state = {
-    searchValue: '',
+export const Searchbar = ({ newSubmit }) => {
+  const [searchValue, setSearchValue] = useState;
+
+  const handleNameChange = evt => {
+    setSearchValue(evt.currentTarget.value);
   };
 
-  handleNameChange = evt => {
-    this.setState({ searchValue: evt.currentTarget.value });
-  };
-
-  handleSubmit = evt => {
+  const handleSubmit = evt => {
     evt.preventDefault();
-    this.props.newSubmit(this.state.searchValue);
-
-    this.setState({ searchValue: '' });
+    newSubmit(searchValue);
+    setSearchValue('');
   };
 
-  render() {
-    const { searchValue } = this.state;
-    return (
-      <Serchbar>
-        <SearchForm onSubmit={this.handleSubmit}>
-          <SearchFormBtn type="submit">
-            <ImSearch size="20" color="blue" />
-            <SubmitLabel>Search</SubmitLabel>
-          </SearchFormBtn>
+  return (
+    <Serchbar>
+      <SearchForm onSubmit={handleSubmit}>
+        <SearchFormBtn type="submit">
+          <ImSearch size="20" color="blue" />
+          <SubmitLabel>Search</SubmitLabel>
+        </SearchFormBtn>
 
-          <SearchFormInput
-            name="searchValue"
-            type="text"
-            autocomplete="off"
-            value={searchValue}
-            onChange={this.handleNameChange}
-            autoFocus
-            placeholder="Search images and photos"
-          />
-        </SearchForm>
-      </Serchbar>
-    );
-  }
-}
+        <SearchFormInput
+          name="searchValue"
+          type="text"
+          autocomplete="off"
+          value={searchValue}
+          onChange={handleNameChange}
+          autoFocus
+          placeholder="Search images and photos"
+        />
+      </SearchForm>
+    </Serchbar>
+  );
+};
