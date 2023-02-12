@@ -7,9 +7,6 @@ export const imagesList = async (searchValue, page, pageSize) => {
   const response = await axios.get(
     `https://pixabay.com/api/?q=${searchValue}&page=${page}&key=${API_KEY}&image_type=photo&orientation=horizontal&per_page=${pageSize}`
   );
-  if (response === []) {
-    return Promise.reject(new Error(`We can not find such a difficult thing!`));
-  }
   return response.data.hits;
 };
 

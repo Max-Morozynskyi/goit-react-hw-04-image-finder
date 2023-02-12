@@ -2,15 +2,14 @@ import { GalleryList } from './ImageGallery.styled';
 import { ImageGalleryItem } from 'components/ImageGalleryItem/ImageGalleryItem';
 import PropTypes from 'prop-types';
 
-export const ImageGallery = ({ images, onOpenModal }) => {
+export const ImageGallery = ({ images }) => {
   return (
     <GalleryList>
       {images.map(({ id, webformatURL, largeImageURL }) => (
         <ImageGalleryItem
           key={id}
           url={webformatURL}
-          modalUrl={largeImageURL}
-          openModal={onOpenModal}
+          modalImg={largeImageURL}
         />
       ))}
     </GalleryList>
@@ -25,5 +24,4 @@ ImageGallery.propTypes = {
       largeImageURL: PropTypes.string.isRequired,
     })
   ),
-  onOpenModal: PropTypes.func.isRequired,
 };

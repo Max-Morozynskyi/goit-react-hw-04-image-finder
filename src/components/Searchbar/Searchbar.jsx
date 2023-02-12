@@ -9,7 +9,7 @@ import {
 } from './Searchbar.styled';
 
 export const Searchbar = ({ newSubmit }) => {
-  const [searchValue, setSearchValue] = useState;
+  const [searchValue, setSearchValue] = useState('');
 
   const handleNameChange = evt => {
     setSearchValue(evt.currentTarget.value);
